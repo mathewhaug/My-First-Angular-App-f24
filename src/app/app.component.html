@@ -1,4 +1,14 @@
+<!-- Future Nav bar-->
+<div class="nav-bar">
+  <nav>
+    <a routerLink="/students" routerLinkActive="active">Student List</a>
+    <a routerLink="/modify-student" routerLinkActive="active">Modify Student</a>
+  </nav>
+</div>
+
 <div class="app-container">
   <h1>{{ title }}</h1>
-  <app-student-list></app-student-list>
+
+  <!--router outlet to display routed components -->
+  <router-outlet></router-outlet>
 </div>

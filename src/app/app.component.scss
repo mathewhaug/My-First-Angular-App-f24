@@ -31,16 +31,43 @@ h2 {
   color: #555;
 }
 
-.toggle-button {
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+/* Style for the navigation bar */
+.nav-bar {
+  background-color: #f8f9fa; /* Light grey background */
+  padding: 10px 20px; /* Padding around the navbar */
+  border-bottom: 1px solid #dee2e6; /* Border for separation */
 }
 
-.toggle-button:hover {
-  background-color: #0056b3;
+.nav-bar nav {
+  display: flex;
+  justify-content: center; /* Center the links */
+}
+
+.nav-bar a {
+  text-decoration: none; /* Remove underline from links */
+  color: #007bff; /* Blue color for links */
+  font-size: 18px; /* Font size for links */
+  margin: 0 15px; /* Space between links */
+}
+
+.nav-bar a.active {
+  font-weight: bold; /* Bold text for active link */
+  color: #0056b3; /* Darker blue for active link */
+}
+
+/* Style for the main container */
+.app-container {
+  padding: 20px; /* Padding around the main content */
+  max-width: 800px; /* Max width for the content area */
+  margin: 20px auto; /* Center the content */
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow for a lifted effect */
+  border-radius: 8px; /* Rounded corners */
+}
+
+/* Style for the title */
+.app-container h1 {
+  font-size: 24px; /* Font size for the title */
+  color: #343a40; /* Dark color for the title text */
+  text-align: center; /* Center the title text */
 }

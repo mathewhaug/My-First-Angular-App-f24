@@ -8,3 +8,30 @@
 h2 {
   margin-top: 0;
 }
+/* Button Styles */
+button {
+  background-color: #007bff; /* Blue background */
+  border: none; /* Remove default border */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding around text */
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Align buttons inline */
+  font-size: 16px; /* Font size */
+  margin: 5px 10px; /* Space between buttons */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover Effect */
+button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Disabled Button State */
+button:disabled {
+  background-color: #ccc; /* Gray background for disabled state */
+  color: #666; /* Darker gray text for disabled state */
+  cursor: not-allowed; /* Change cursor to not-allowed */
+}
