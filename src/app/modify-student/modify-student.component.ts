@@ -1,79 +1,80 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../Shared/Models/user";
 import {StudentService} from "../Services/student.service";
-import {FormsModule} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NgIf} from "@angular/common";
+import {catchError, map, of, switchMap} from "rxjs";
 
 @Component({
   selector: 'app-modify-student',
   standalone: true,
   imports: [
     FormsModule,
-    NgIf
+    NgIf,
+    ReactiveFormsModule
   ],
   templateUrl: './modify-student.component.html',
   styleUrl: './modify-student.component.scss'
 })
 export class ModifyStudentComponent implements OnInit{
-  //init an empty instance of a student:User
-  student:User = {
-    id: 0,
-    firstName: '',
-    lastName: '',
-    department: '',
-    isAdmin: false
-  };
-  //inject our service
-  constructor(private studentService:StudentService,
-              private route: ActivatedRoute) { }
+  studentForm: FormGroup;
+  student: User | undefined;
+
+
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private studentService: StudentService,
+    private router: Router
+  ) {
+    this.studentForm = this.fb.group({
+      id: ['', Validators.required], //ID is required
+      firstName: ['', Validators.required],//First name is required
+      lastName: ['', Validators.required],
+      department: [''],
+      isAdmin: [false]
+    });
+  }
+
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.studentService.getStudentById(+id).subscribe((student: User | undefined) => {
-        if (student) {
-          this.student = student; // Set student if not undefined
-        } else {
-          console.error('Student not found');
-          // Handle the case where student is undefined
+      this.studentService.getStudentById(+id).subscribe(student => {
+        if(student) {
+          this.student = student;
+
+          this.studentForm.patchValue(student);
         }
       });
     }
   }
-  //method to add new student
-  addStudent(){
-    //get data from form fields and add to student object
-    this.studentService.addStudent(this.student);
-    //reset Form after adding student
-    this.student = {
-      id: 0,
-      firstName: '',
-      lastName: '',
-      department: '',
-      isAdmin: false
-    };
-  }
-  //method to update student
-  updateStudent(){
-    //iff student exists
-    if(this.student.id){
-      this.studentService.updateStudent(this.student);//update with details provided
+
+  onSubmit(): void {
+    const student: User = this.studentForm.value;
+
+    // Check if we're updating an existing student
+    if (student.id) {
+      this.studentService.updateStudent(student);
+    } else {
+      // For adding a new student, generate a new ID
+      const newId = this.studentService.generateNewId(); // This method will create a new ID
+      student.id = newId;
+      this.studentService.addStudent(student);
     }
-  }
-  //delete student
-  deleteStudent(){
-    //if student exists
-    if(this.student.id){
-      this.studentService.deleteStudent(this.student.id);
-    }
-  }
-  //fetch student details
-  fetchStudent(id:number){//we must say user|undefined as thats what out service may emit
-    this.studentService.getStudentById(id).subscribe((student:User | undefined)=>{
-      if(student){
-        this.student = student;
-      }
-    });
+
+    this.router.navigate(['/students']);
   }
 
+  onDelete(): void {
+    const id = this.studentForm.get('id')?.value;
+    if (id) {
+      this.studentService.deleteStudent(id);
+      this.router.navigate(['/students']);
+    }
+  }
+
+  navigateToStudentList(): void {
+    this.router.navigate(['/students']);
+  }
 }

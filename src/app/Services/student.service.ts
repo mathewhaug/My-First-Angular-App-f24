@@ -12,37 +12,35 @@ export class StudentService {
   private students: User[] = userList;//Local copy of student data for CRUD Operations
   constructor() { }
   //Returns all students
-  getStudents(): Observable<User[]>{
-    return of(userList); //Return and observable that emits mock student data
-  }
-  //Adding basic CRUD methods
-  //Create: Add USer
-  addStudent(newStudent:User) : Observable<User[]>{
-    this.students.push(newStudent)
+
+  getStudents(): Observable<User[]> {
     return of(this.students);
   }
 
-  //Update an Existing user
-  updateStudent(updatedStudent: User): Observable<User[]> {
-    const index = this.students.findIndex(user => user.id === updatedStudent.id);
-    if (index !== -1) {
-      this.students[index] = updatedStudent;
-    }
-    return of(this.students);
+  getStudentById(id: number): Observable<User | undefined> {
+    return of(this.students.find(student => student.id === id));
   }
-  //Delete: Remove a user by ID
-  deleteStudent(id: number): void {
-    const index = this.students.findIndex(s => s.id === id);
-    if (index !== -1) {
-      this.students.splice(index, 1); //use splice to directly modify the array
-      console.log("Student Deleted!");
-    } else {
-      console.error('Student not found for deletion.');
-    }
-  }
-  getStudentById(studentId: number): Observable<User | undefined> {
-    const student = this.students.find(user => user.id === studentId);
+
+  addStudent(student: User): Observable<User> {
+    this.students.push(student);
     return of(student);
+  }
+
+  updateStudent(updatedStudent: User): Observable<User | undefined> {
+    const index = this.students.findIndex(student => student.id === updatedStudent.id);
+    if (index > -1) {
+      this.students[index] = updatedStudent;
+      return of(updatedStudent);
+    }
+    return of(undefined);
+  }
+
+  deleteStudent(id: number): void {
+    this.students = this.students.filter(student => student.id !== id);
+  }
+  // New method to generate a new unique ID
+  generateNewId(): number {
+    return this.students.length > 0 ? Math.max(...this.students.map(student => student.id)) + 1 : 1;
   }
 }
 
