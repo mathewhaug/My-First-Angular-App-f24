@@ -4,7 +4,7 @@ import {StudentService} from "../Services/student.service";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgIf} from "@angular/common";
-import {catchError, map, of, switchMap} from "rxjs";
+
 
 @Component({
   selector: 'app-modify-student',
@@ -36,14 +36,18 @@ export class ModifyStudentComponent implements OnInit{
       isAdmin: [false]
     });
   }
-
+/*
+This code initializes the component by fetching the details of a specific student based on the ID provided
+ in the route parameters. It then populates the reactive form with the student's data, allowing the user
+  to view or modify the student's details.
+ */
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.studentService.getStudentById(+id).subscribe(student => {
         if(student) {
           this.student = student;
-
+// The patchValue method is used to update the form with the student's data without replacing the entire form structure.
           this.studentForm.patchValue(student);
         }
       });
