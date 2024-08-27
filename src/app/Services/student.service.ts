@@ -31,9 +31,14 @@ export class StudentService {
     return of(this.students);
   }
   //Delete: Remove a user by ID
-  deleteStudent(studentId: number): Observable<User[]> {
-    this.students = this.students.filter(user => user.id !== studentId);
-    return of(this.students);
+  deleteStudent(id: number): void {
+    const index = this.students.findIndex(s => s.id === id);
+    if (index !== -1) {
+      this.students.splice(index, 1); //use splice to directly modify the array
+      console.log("Student Deleted!");
+    } else {
+      console.error('Student not found for deletion.');
+    }
   }
   getStudentById(studentId: number): Observable<User | undefined> {
     const student = this.students.find(user => user.id === studentId);
