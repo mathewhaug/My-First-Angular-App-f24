@@ -42,12 +42,10 @@ This code initializes the component by fetching the details of a specific studen
   to view or modify the student's details.
  */
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
-      this.studentService.getStudentById(+id).subscribe(student => {
-        if(student) {
-          this.student = student;
-// The patchValue method is used to update the form with the student's data without replacing the entire form structure.
+      this.studentService.getStudentById(id).subscribe(student => {
+        if (student) {
           this.studentForm.patchValue(student);
         }
       });
@@ -55,26 +53,19 @@ This code initializes the component by fetching the details of a specific studen
   }
 
   onSubmit(): void {
-    const student: User = this.studentForm.value;
-
-    // Check if we're updating an existing student
-    if (student.id) {
-      this.studentService.updateStudent(student);
-    } else {
-      // For adding a new student, generate a new ID
-      const newId = this.studentService.generateNewId(); // This method will create a new ID
-      student.id = newId;
-      this.studentService.addStudent(student);
+    if (this.studentForm.valid) {
+      const student: User = this.studentForm.value;
+      if (student.id) {
+        this.studentService.updateStudent(student).subscribe(() => this.router.navigate(['/students']));
+      } else {
+        this.studentService.addStudent(student).subscribe(() => this.router.navigate(['/students']));
+      }
     }
-
-    this.router.navigate(['/students']);
   }
-
   onDelete(): void {
-    const id = this.studentForm.get('id')?.value;
+    const id = this.studentForm.value.id;
     if (id) {
-      this.studentService.deleteStudent(id);
-      this.router.navigate(['/students']);
+      this.studentService.deleteStudent(id).subscribe(() => this.router.navigate(['/students']));
     }
   }
 
