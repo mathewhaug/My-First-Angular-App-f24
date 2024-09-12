@@ -7,11 +7,7 @@
     <p>Department: {{ user.department }}</p>
     <p>Admin: {{ user.isAdmin ? 'Yes' : 'No' }}</p>
     <!-- ternary operator to give user appropriate feedback -->
-    <button (click)="toggleAdminStatus(user)" class = 'toggle-button'>
-      Toggle Admin Status
-    </button>
+    <!-- Button for toggling Admin Status -->
+    <button (click) = "toggleAdminStatus(user)" class = 'toggle-button'>Toggle Admin Status</button>
   </div>
 </div>
-
-
-<h1>{{varName}}</h1>
