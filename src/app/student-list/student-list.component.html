@@ -1,0 +1,15 @@
+<div>
+  <table>
+<tbody>
+<tr *ngFor="let student of userList" (click)="selectStudent(student)">
+
+  <td>{{ student.id }}</td>
+  <td>{{ student.firstName }}</td>
+  <td>{{ student.lastName }}</td>
+  <td>{{ student.department }}</td>
+  <td>{{ student.isAdmin ? 'Yes' : 'No' }}</td>
+</tr>
+</tbody>
+</table>
+<app-student-detail [student]="selectedStudent"></app-student-detail>
+</div>
