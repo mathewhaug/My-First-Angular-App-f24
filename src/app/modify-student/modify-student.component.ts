@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {NgIf} from "@angular/common";
 
 
+
 @Component({
   selector: 'app-modify-student',
   standalone: true,
@@ -20,6 +21,7 @@ import {NgIf} from "@angular/common";
 export class ModifyStudentComponent implements OnInit{
   studentForm: FormGroup;
   student: User | undefined;
+  error: string | null = null;
 
 
   constructor(
@@ -49,12 +51,18 @@ This code initializes the component by fetching the details of a specific studen
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
       //if the ID is valid, the StudentService is used to fetch the student's details by calling the getStudentById method
-      this.studentService.getStudentById(id).subscribe(student => {
-        if (student) {
-          //If the student object is valid, the patchValue method of the reactive form
-          // (studentForm) is called to populate the form with the student's data The patchValue method updates the form controls with the
-          // values from the student object without resetting the entire form
-          this.studentForm.patchValue(student);
+      this.studentService.getStudentById(id).subscribe( {
+        next: student => {
+          if (student) {
+            //If the student object is valid, the patchValue method of the reactive form
+            // (studentForm) is called to populate the form with the student's data The patchValue method updates the form controls with the
+            // values from the student object without resetting the entire form
+            this.studentForm.patchValue(student);
+          }
+        },
+        error: err => {
+          this.error = 'Error fetching student';
+          console.error('Error fetching student:', err);
         }
       });
     }
@@ -92,4 +100,6 @@ onSubmit method in the ModifyStudentComponent class is responsible for handling
   navigateToStudentList(): void {
     this.router.navigate(['/students']);
   }
+
+
 }
