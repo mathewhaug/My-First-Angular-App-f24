@@ -25,6 +25,7 @@ export class StudentService {
   }
 
   addStudent(student: User): Observable<User> {
+    student.id = this.generateNewId();
     return this.http.post<User>(this.apiUrl, student);
   }
 

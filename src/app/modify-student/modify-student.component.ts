@@ -29,7 +29,8 @@ export class ModifyStudentComponent implements OnInit{
     private router: Router
   ) {
     this.studentForm = this.fb.group({
-      id: ['', Validators.required], //ID is required
+      //Auto filling the ID field with a new ID
+      id: [studentService.generateNewId()], //ID is NOT required
       firstName: ['', Validators.required],//First name is required
       lastName: ['', Validators.required],
       department: [''],
@@ -68,7 +69,7 @@ onSubmit method in the ModifyStudentComponent class is responsible for handling
       //Iff the form is valid, it extracts the form values into a student object of type User
       const student: User = this.studentForm.value;
       /*
-      Here we have a little bit of logic, first iff the student.id exists, we know that the student is already in the list
+      Here we have a little bit of logic, first iff the student.id
       and just being updated
 
       if it does not exist, we know that the student is new and we need to add it to the list
@@ -76,6 +77,7 @@ onSubmit method in the ModifyStudentComponent class is responsible for handling
       if (student.id) {
         this.studentService.updateStudent(student).subscribe(() => this.router.navigate(['/students']));
       } else {
+        student.id = this.studentService.generateNewId();
         this.studentService.addStudent(student).subscribe(() => this.router.navigate(['/students']));
       }
     }
