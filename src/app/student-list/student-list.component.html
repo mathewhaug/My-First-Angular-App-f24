@@ -7,18 +7,20 @@
     <thead>
     <tr>
       <th>ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
+      <th>Full Name</th>
+
       <th>Department</th>
+      <th>Budget</th>
       <th>Admin</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let student of userList" [routerLink]="['/students',student.id ]">
       <td>{{ student.id }}</td>
-      <td>{{ student.firstName }}</td>
-      <td>{{ student.lastName }}</td>
+      <td>{{ student | fullName  }}</td> <!-- custom pipe -->
+
       <td>{{ student.department }}</td>
+      <td>{{student.budget | currency: 'CAD': "symbol-narrow"}}</td><!-- currency pipe -->
       <td>{{ student.isAdmin ? 'Yes' : 'No' }}</td>
     </tr>
     </tbody>

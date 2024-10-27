@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import { User} from "../Shared/Models/user";
-import {NgForOf, NgIf} from "@angular/common";
+import {CurrencyPipe, NgForOf, NgIf, UpperCasePipe} from "@angular/common";
 import {StudentDetailComponent} from "../student-detail/student-detail.component";
 import {StudentService} from "../Services/student.service";
 import {RouterLink} from "@angular/router";
+import {FullNamePipe} from "../pipes/full-name.pipe";
 
 
 @Component({
@@ -13,7 +14,10 @@ import {RouterLink} from "@angular/router";
     NgForOf,
     StudentDetailComponent,
     RouterLink,
-    NgIf
+    NgIf,
+    CurrencyPipe,
+    FullNamePipe,
+    UpperCasePipe
   ],
   templateUrl: './student-list.component.html',
   styleUrl: './student-list.component.scss'
@@ -27,6 +31,7 @@ export class StudentListComponent implements OnInit {
   constructor (private studentService: StudentService){
     //this constructor is primarily used for dependency injection
   }
+
 
 
   ngOnInit(){

@@ -4,6 +4,7 @@
   <p><strong>First Name:</strong> {{ student.firstName }}</p>
   <p><strong>Last Name:</strong> {{ student.lastName }}</p>
   <p><strong>Department:</strong> {{ student.department }}</p>
+  <p><strong>Budget:</strong> {{ student.budget | currency: 'CAD': "symbol-narrow" }}</p>
   <p><strong>Admin:</strong> {{ student.isAdmin ? 'Yes' : 'No' }}</p>
   <button (click)="goBackward()" [disabled]="currentIndex === 0">Previous</button>
   <button (click)="goForward()" [disabled]="currentIndex === userList.length - 1">Next</button>

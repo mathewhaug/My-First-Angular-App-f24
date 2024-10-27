@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../Shared/Models/user";
-import {NgIf} from "@angular/common";
+import {CurrencyPipe, NgIf} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 import {StudentService} from "../Services/student.service";
 
@@ -9,7 +9,8 @@ import {StudentService} from "../Services/student.service";
   selector: 'app-student-detail',
   standalone: true,
   imports: [
-    NgIf
+    NgIf,
+    CurrencyPipe
   ],
   templateUrl: './student-detail.component.html',
   styleUrl: './student-detail.component.scss'
