@@ -19,7 +19,7 @@ export class InMemoryDataService implements InMemoryDbService {
         department: "Programming",
         budget: 123456.78,
         classList: ["JavaScript Basics", "Angular Development", "HTML & CSS", "Data Structures", "Algorithms"],
-        grades: [8, 0, 8, 9, 818],
+        grades: [8, -10, 50, 61, 81],
         isAdmin: false,
       },
       {
@@ -29,7 +29,7 @@ export class InMemoryDataService implements InMemoryDbService {
         department: "Web Dev",
         budget: 23456.78,
         classList: ["React Fundamentals", "Node.js Essentials", "APIs & Web Services", "Responsive Design", "Version Control"],
-        grades: [95, 88, 84, 9, 87],
+        grades: [95, 58, 84, 9, 87],
         isAdmin: true,
       },
       {
@@ -39,7 +39,7 @@ export class InMemoryDataService implements InMemoryDbService {
         department: "Programming",
         budget: 3456.78,
         classList: ["Python Programming", "Machine Learning", "Databases", "Cybersecurity", "Software Engineering"],
-        grades: [75, 82, 78, 85, 80],
+        grades: [75, 8, 78, 85, 80],
         isAdmin: false,
       },
       {
@@ -49,7 +49,7 @@ export class InMemoryDataService implements InMemoryDbService {
         department: "Programming",
         budget: 456.78,
         classList: ["Java Programming", "Mobile App Development", "Game Design", "UI/UX Design", "Cloud Computing"],
-        grades: [90, 92, 88, 95, 89],
+        grades: [90, 92, 88, 5, 89],
         isAdmin: true,
       },
       {
@@ -69,7 +69,7 @@ export class InMemoryDataService implements InMemoryDbService {
         department: "Web Development",
         budget: 9876.54,
         classList: ["HTML5 & CSS3", "JavaScript for Beginners", "Git and GitHub", "Mobile Web Development", "Progressive Web Apps"],
-        grades: [88, 90, 86, 84, 91],
+        grades: [88, 90, 60, 84, 91],
         isAdmin: true,
       },
       {

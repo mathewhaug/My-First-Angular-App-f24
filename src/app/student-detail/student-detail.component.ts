@@ -4,6 +4,7 @@ import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 import {StudentService} from "../Services/student.service";
 import {HoverHighlightDirective} from "../directives/hover-highlight.directive";
+import {TextColorDirective} from "../directives/text-colour.directive";
 
 
 @Component({
@@ -13,7 +14,8 @@ import {HoverHighlightDirective} from "../directives/hover-highlight.directive";
     NgIf,
     CurrencyPipe,
     NgForOf,
-    HoverHighlightDirective
+    HoverHighlightDirective,
+    TextColorDirective
   ],
   templateUrl: './student-detail.component.html',
   styleUrl: './student-detail.component.scss'

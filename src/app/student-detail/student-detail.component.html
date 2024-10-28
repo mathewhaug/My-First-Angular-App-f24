@@ -15,10 +15,12 @@
       <th>Grade</th>
     </tr>
     </thead>
-    <tbody> <!--Put the highlight directive on it  -->
-    <tr *ngFor="let className of student.classList; let i = index" [appHoverHighlight]="'lightblue'">
+    <tbody> <!--Put the highlight directive on it for funsies
+    student-detail.component.html-->
+    <tr *ngFor="let className of student.classList; let i = index" [appHoverHighlight]="'lightblue'" [appTextColor]="student.grades[i]">
       <td>{{ className }}</td>
-      <td>{{ student.grades[i] }}</td>
+      <!-- Passing the grade to the directive to determine the color -->
+      <td >{{ student.grades[i] }}</td>
     </tr>
     </tbody>
   </table>
