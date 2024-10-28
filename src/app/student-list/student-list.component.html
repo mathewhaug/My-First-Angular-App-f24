@@ -15,10 +15,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let student of userList" [routerLink]="['/students',student.id ]">
+    <!-- NOTE I need to get rid of my CSS Hover rule as CSS overrides the directive rule -->
+    <tr *ngFor="let student of userList" [routerLink]="['/students',student.id ]" [appHoverHighlight]="'lightblue'">
       <td>{{ student.id }}</td>
       <td>{{ student | fullName  }}</td> <!-- custom pipe -->
-
       <td>{{ student.department }}</td>
       <td>{{student.budget | currency: 'CAD': "symbol-narrow"}}</td><!-- currency pipe -->
       <td>{{ student.isAdmin ? 'Yes' : 'No' }}</td>

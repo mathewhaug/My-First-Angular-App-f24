@@ -5,6 +5,7 @@ import {StudentDetailComponent} from "../student-detail/student-detail.component
 import {StudentService} from "../Services/student.service";
 import {RouterLink} from "@angular/router";
 import {FullNamePipe} from "../pipes/full-name.pipe";
+import {HoverHighlightDirective} from "../directives/hover-highlight.directive";
 
 
 @Component({
@@ -17,7 +18,8 @@ import {FullNamePipe} from "../pipes/full-name.pipe";
     NgIf,
     CurrencyPipe,
     FullNamePipe,
-    UpperCasePipe
+    UpperCasePipe,
+    HoverHighlightDirective
   ],
   templateUrl: './student-list.component.html',
   styleUrl: './student-list.component.scss'
