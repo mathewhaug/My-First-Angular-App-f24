@@ -4,6 +4,7 @@ import {StudentService} from "../Services/student.service";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgIf} from "@angular/common";
+import {DisableButtonDirective} from "../directives/disable-button.directive";
 
 
 
@@ -13,7 +14,8 @@ import {NgIf} from "@angular/common";
   imports: [
     FormsModule,
     NgIf,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DisableButtonDirective
   ],
   templateUrl: './modify-student.component.html',
   styleUrl: './modify-student.component.scss'

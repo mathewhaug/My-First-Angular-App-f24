@@ -6,9 +6,25 @@
   <p><strong>Department:</strong> {{ student.department }}</p>
   <p><strong>Budget:</strong> {{ student.budget | currency: 'CAD': "symbol-narrow" }}</p>
   <p><strong>Admin:</strong> {{ student.isAdmin ? 'Yes' : 'No' }}</p>
+
+  <h3>Class Grades</h3>
+  <table >
+    <thead>
+    <tr>
+      <th>Class Name</th>
+      <th>Grade</th>
+    </tr>
+    </thead>
+    <tbody> <!--Put the highlight directive on it  -->
+    <tr *ngFor="let className of student.classList; let i = index" [appHoverHighlight]="'lightblue'">
+      <td>{{ className }}</td>
+      <td>{{ student.grades[i] }}</td>
+    </tr>
+    </tbody>
+  </table>
+
   <button (click)="goBackward()" [disabled]="currentIndex === 0">Previous</button>
   <button (click)="goForward()" [disabled]="currentIndex === userList.length - 1">Next</button>
   <button (click)="goBack()">Back to Student List</button>
 </div>
 <div *ngIf="error" class="error">{{ error }}</div>
-

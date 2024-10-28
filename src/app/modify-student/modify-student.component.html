@@ -31,8 +31,10 @@ This is built using Reactive Forms-->
     <input type="checkbox" id="isAdmin" formControlName="isAdmin" />
   </div>
 
-  <!-- Submit Button (Add or Update) -->
-  <button type="submit">Submit</button>
+  <!-- Submit Button (Add or Update)
+  Passing in studentForm as the var, this relates to the reactive form name
+   at the top of the file-->
+  <button type="submit" [appDisableButton]="studentForm">Submit</button>
 
   <!-- Delete Button (Always Displayed Now) -->
   <button type="button" (click)="onDelete()">Delete</button>

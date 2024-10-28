@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../Shared/Models/user";
-import {CurrencyPipe, NgIf} from "@angular/common";
+import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 import {StudentService} from "../Services/student.service";
+import {HoverHighlightDirective} from "../directives/hover-highlight.directive";
 
 
 @Component({
@@ -10,7 +11,9 @@ import {StudentService} from "../Services/student.service";
   standalone: true,
   imports: [
     NgIf,
-    CurrencyPipe
+    CurrencyPipe,
+    NgForOf,
+    HoverHighlightDirective
   ],
   templateUrl: './student-detail.component.html',
   styleUrl: './student-detail.component.scss'

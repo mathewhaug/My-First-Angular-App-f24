@@ -45,6 +45,8 @@ button {
   font-size: 1rem;
 }
 
+
+
 button[type="submit"] {
   background-color: #4CAF50;
   color: white;
@@ -64,3 +66,13 @@ button[type="button"]:last-of-type {
   color: red;
   font-weight: bold;
 }
+
+.custom-disabled {
+  background-color: #d3d3d3 !important; /* Gray background to indicate disabled */
+  color: #a9a9a9 !important; /* Light gray text color */
+  cursor: not-allowed !important; /* Change cursor to indicate unclickable */
+  pointer-events: none !important; /* Prevent any mouse events */
+  border: 1px solid #ccc !important; /* Keep border consistent */
+}
+
+

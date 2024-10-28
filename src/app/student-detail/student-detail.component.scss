@@ -35,3 +35,29 @@ button:disabled {
   color: #666; /* Darker gray text for disabled state */
   cursor: not-allowed; /* Change cursor to not-allowed */
 }
+
+.student-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+}
+
+table {
+  margin-top: 20px; /* Optional: Add some spacing above the table */
+  border-collapse: collapse; /* Collapse borders for a cleaner look */
+  width: 80%; /* Optional: Set the table width */
+}
+
+th, td {
+  border: 1px solid #ddd; /* Add border to table cells */
+  padding: 8px; /* Add padding for better spacing */
+  text-align: center; /* Center text in cells */
+}
+
+th {
+  background-color: #f2f2f2; /* Light gray background for header */
+}
+
+.error {
+  color: red; /* Optional: Style for error messages */
+}
