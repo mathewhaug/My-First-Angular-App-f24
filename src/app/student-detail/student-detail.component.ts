@@ -5,6 +5,18 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {StudentService} from "../Services/student.service";
 import {HoverHighlightDirective} from "../directives/hover-highlight.directive";
 import {TextColorDirective} from "../directives/text-colour.directive";
+import {MatCard, MatCardContent, MatCardHeader, MatCardModule} from "@angular/material/card";
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
+  MatTable
+} from "@angular/material/table";
+import {MatButton} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @Component({
@@ -13,9 +25,24 @@ import {TextColorDirective} from "../directives/text-colour.directive";
   imports: [
     NgIf,
     CurrencyPipe,
-    NgForOf,
     HoverHighlightDirective,
-    TextColorDirective
+    TextColorDirective,
+    MatCard,
+    MatCardHeader,
+    MatCardContent,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCell,
+    MatHeaderCellDef,
+    MatCellDef,
+    MatCell,
+    MatHeaderRow,
+    MatHeaderRowDef,
+    MatRowDef,
+    MatRow,
+    MatButton,
+    MatCardModule, //These last two imports did not get imported automatically, I had to type them manually
+    MatIconModule
   ],
   templateUrl: './student-detail.component.html',
   styleUrl: './student-detail.component.scss'
@@ -26,6 +53,7 @@ export class StudentDetailComponent implements OnInit{
   userList: User[] = [];// to store the list of students
   currentIndex: number = 0;//to track the current index
   error: string|null = null;//to store any errors
+  displayedColumns: string[] = ['className', 'grade']; //Define column names for mat tabkle
 
   constructor(
     private route: ActivatedRoute,

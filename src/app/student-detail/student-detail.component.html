@@ -1,32 +1,53 @@
 <div *ngIf="student" class="student-detail">
-  <h2>Student Details</h2>
-  <p><strong>ID:</strong> {{ student.id }}</p>
-  <p><strong>First Name:</strong> {{ student.firstName }}</p>
-  <p><strong>Last Name:</strong> {{ student.lastName }}</p>
-  <p><strong>Department:</strong> {{ student.department }}</p>
-  <p><strong>Budget:</strong> {{ student.budget | currency: 'CAD': "symbol-narrow" }}</p>
-  <p><strong>Admin:</strong> {{ student.isAdmin ? 'Yes' : 'No' }}</p>
+  <!-- Student Details Card -->
+  <mat-card class="student-card">
+    <mat-card-header>
+      <mat-card-title>Student Details</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>ID:</strong> {{ student.id }}</p>
+      <p><strong>First Name:</strong> {{ student.firstName }}</p>
+      <p><strong>Last Name:</strong> {{ student.lastName }}</p>
+      <p><strong>Department:</strong> {{ student.department }}</p>
+      <p><strong>Budget:</strong> {{ student.budget | currency: 'CAD': 'symbol-narrow' }}</p>
+      <p><strong>Admin:</strong> {{ student.isAdmin ? 'Yes' : 'No' }}</p>
 
-  <h3>Class Grades</h3>
-  <table >
-    <thead>
-    <tr>
-      <th>Class Name</th>
-      <th>Grade</th>
-    </tr>
-    </thead>
-    <tbody> <!--Put the highlight directive on it for funsies
-    student-detail.component.html-->
-    <tr *ngFor="let className of student.classList; let i = index" [appHoverHighlight]="'lightblue'" [appTextColor]="student.grades[i]">
-      <td>{{ className }}</td>
-      <!-- Passing the grade to the directive to determine the color -->
-      <td >{{ student.grades[i] }}</td>
-    </tr>
-    </tbody>
-  </table>
+      <!-- Grades Table -->
+      <h3>Class Grades</h3>
+      <table mat-table [dataSource]="student.classList" class="mat-elevation-z8">
+        <ng-container matColumnDef="className">
+          <th mat-header-cell *matHeaderCellDef>Class Name</th>
+          <td mat-cell *matCellDef="let className">{{ className }}</td>
+        </ng-container>
 
-  <button (click)="goBackward()" [disabled]="currentIndex === 0">Previous</button>
-  <button (click)="goForward()" [disabled]="currentIndex === userList.length - 1">Next</button>
-  <button (click)="goBack()">Back to Student List</button>
+        <ng-container matColumnDef="grade">
+          <th mat-header-cell *matHeaderCellDef>Grade</th>
+          <td mat-cell *matCellDef="let className; let i = index" [appHoverHighlight]="'lightblue'" [appTextColor]="student.grades[i]">
+            {{ student.grades[i] }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Navigation Buttons -->
+  <div class="navigation-buttons">
+    <button mat-raised-button color="primary" (click)="goBackward()" [disabled]="currentIndex === 0">
+      <mat-icon>arrow_back</mat-icon> Previous
+    </button>
+    <button mat-raised-button color="primary" (click)="goForward()" [disabled]="currentIndex === userList.length - 1">
+      Next <mat-icon>arrow_forward</mat-icon>
+    </button>
+    <button mat-raised-button color="accent" (click)="goBack()">
+      Back to Student List
+    </button>
+  </div>
 </div>
-<div *ngIf="error" class="error">{{ error }}</div>
+
+<!-- Error Display -->
+<div *ngIf="error" mat-card class="error-card">
+  <mat-card-content>{{ error }}</mat-card-content>
+</div>
