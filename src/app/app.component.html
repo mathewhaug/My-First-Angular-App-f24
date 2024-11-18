@@ -1,10 +1,20 @@
-<!-- Future Nav bar-->
+<!-- Mat Design Navigation Bar -->
+<!-- Old method
 <div class="nav-bar">
   <nav>
     <a routerLink="/students" routerLinkActive="active">Student List</a>
     <a routerLink="/modify-student" routerLinkActive="active">Modify Student</a>
   </nav>
 </div>
+-->
+
+<!-- New method app.component.html-->
+<mat-toolbar color="primary">
+  <span>Student Management System</span>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/students" routerLinkActive="active">Student List</button>
+  <button mat-button routerLink="/modify-student" routerLinkActive="active">Modify Student</button>
+</mat-toolbar>
 
 <div class="app-container">
   <h1>{{ title }}</h1>

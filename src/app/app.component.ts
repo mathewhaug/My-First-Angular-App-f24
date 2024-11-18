@@ -3,11 +3,13 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {User} from "./Shared/Models/user";
 import {JsonPipe, NgForOf} from "@angular/common";
 import {StudentListComponent} from "./student-list/student-list.component";
+import {MatToolbar} from "@angular/material/toolbar";
+import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgForOf, JsonPipe, StudentListComponent, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, NgForOf, JsonPipe, StudentListComponent, RouterLink, RouterLinkActive, MatToolbar, MatButton],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
