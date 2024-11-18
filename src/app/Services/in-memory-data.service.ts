@@ -313,6 +313,38 @@ export class InMemoryDataService implements InMemoryDbService {
         isAdmin: false,
       }
     ];
-    return { students };
+    //function to generate additional users based on existing ones
+    const generateAdditionalUsers = (count: number, baseUsers: User[]): User[] => {
+      let users: User[] = [];
+      let id = baseUsers.length + 1; // Start with the next id number
+      const departments = ["Programming", "Web Development", "Software Engineering", "Computer Science"];
+      const classLists = [
+        ["JavaScript Basics", "Angular Development", "HTML & CSS", "Data Structures", "Algorithms"],
+        ["React Fundamentals", "Node.js Essentials", "APIs & Web Services", "Responsive Design", "Version Control"],
+        ["Python Programming", "Machine Learning", "Databases", "Cybersecurity", "Software Engineering"],
+
+      ];
+
+      for (let i = 0; i < count; i++) {
+        const randomBaseUser = baseUsers[i % baseUsers.length]; // Recycle the base users names
+        const newUser: User = {
+          id: id++, // Increment the id for each new user
+          firstName: `${randomBaseUser.firstName} `,
+          lastName: `${randomBaseUser.lastName}`,
+          department: departments[i % departments.length], // Assign a random department
+          budget: Math.floor(Math.random() * 100000 + 1000), //Random budget between 1000 and 100 000 000
+          classList: classLists[i % classLists.length], //asssign a random class list
+          grades: Array.from({ length: 5 }, () => Math.floor(Math.random() * 100)), // Random grades between 0 and 100
+          isAdmin: i % 2 === 0, // Alternate between admin and non-admin
+        };
+        users.push(newUser);
+      }
+      return users;
+    };
+
+    // Generate 1000 users by reusing existing users
+    const allUsers = [...students, ...generateAdditionalUsers(10 - students.length, students)];
+
+    return { students: allUsers };
   }
 }
