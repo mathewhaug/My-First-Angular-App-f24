@@ -2,7 +2,7 @@
   <h2>Student List</h2>
 
   <!-- Material Table -->
-  <table mat-table [dataSource]="userList" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!-- ID Column -->
     <ng-container matColumnDef="id">
@@ -43,6 +43,9 @@
       [appHoverHighlight]="'lightblue'"
     ></tr>
   </table>
+
+  <!-- Pagination -->
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 
   <!-- Error Message -->
   <div *ngIf="error" class="error mat-error">{{ error }}</div>

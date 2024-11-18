@@ -335,15 +335,15 @@ export class InMemoryDataService implements InMemoryDbService {
           budget: Math.floor(Math.random() * 100000000 + 1000), //Random budget between 1000 and 100 000 000
           classList: classLists[i % classLists.length], //asssign a random class list
           grades: Array.from({ length: 5 }, () => Math.floor(Math.random() * 100)), // Random grades between 0 and 100
-          isAdmin: i % 2 === 0, // Alternate between admin and non-admin
+          isAdmin: i % 2 === 0, // Alt between admin and non-admin
         };
         users.push(newUser);
       }
       return users;
     };
 
-    // Generate 1000 users by reusing existing users
-    const allUsers = [...students, ...generateAdditionalUsers(10 - students.length, students)];
+    //Chhange this number to any number > 30 for more students      ↓↓↓
+    const allUsers = [...students, ...generateAdditionalUsers(30 - students.length, students)];
 
     return { students: allUsers };
   }
