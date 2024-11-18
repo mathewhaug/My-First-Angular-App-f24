@@ -332,7 +332,7 @@ export class InMemoryDataService implements InMemoryDbService {
           firstName: `${randomBaseUser.firstName} `,
           lastName: `${randomBaseUser.lastName}`,
           department: departments[i % departments.length], // Assign a random department
-          budget: Math.floor(Math.random() * 100000 + 1000), //Random budget between 1000 and 100 000 000
+          budget: Math.floor(Math.random() * 100000000 + 1000), //Random budget between 1000 and 100 000 000
           classList: classLists[i % classLists.length], //asssign a random class list
           grades: Array.from({ length: 5 }, () => Math.floor(Math.random() * 100)), // Random grades between 0 and 100
           isAdmin: i % 2 === 0, // Alternate between admin and non-admin
