@@ -7,6 +7,7 @@ import {InMemoryDataService} from "./app/Services/in-memory-data.service";
 import {provideHttpClient} from "@angular/common/http";
 import {importProvidersFrom} from "@angular/core";
 import {StudentListComponent} from "./app/student-list/student-list.component";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 //main.ts
 //define the routes and specify their child routes
@@ -27,6 +28,6 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(), // Ensure that HTTP interceptors are properly configured
     provideRouter(routes),
-    importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 1 })) // Import providers dynamically
+    importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 1 })), provideAnimationsAsync() // Import providers dynamically
   ],
 }).catch((err) => console.error(err));
