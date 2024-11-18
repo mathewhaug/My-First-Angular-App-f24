@@ -6,6 +6,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {NgIf} from "@angular/common";
 import {DisableButtonDirective} from "../directives/disable-button.directive";
 import {AutoFocusDirective} from "../directives/auto-focus.directive";
+import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
+import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -17,7 +21,14 @@ import {AutoFocusDirective} from "../directives/auto-focus.directive";
     NgIf,
     ReactiveFormsModule,
     DisableButtonDirective,
-    AutoFocusDirective
+    AutoFocusDirective,
+    MatCheckbox,
+    MatLabel,
+    MatFormField,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatButtonModule
   ],
   templateUrl: './modify-student.component.html',
   styleUrl: './modify-student.component.scss'

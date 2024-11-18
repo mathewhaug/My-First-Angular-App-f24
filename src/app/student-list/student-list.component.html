@@ -1,31 +1,49 @@
-<!doctypeHTML>
-
-
-<div class="container">
+<div class="mat-container">
   <h2>Student List</h2>
-  <table>
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Full Name</th>
 
-      <th>Department</th>
-      <th>Budget</th>
-      <th>Admin</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- NOTE I need to get rid of my CSS Hover rule as CSS overrides the directive rule -->
-    <tr *ngFor="let student of userList" [routerLink]="['/students',student.id ]" [appHoverHighlight]="'lightblue'">
-      <td>{{ student.id }}</td>
-      <td>{{ student | fullName  }}</td> <!-- custom pipe -->
-      <td>{{ student.department }}</td>
-      <td>{{student.budget | currency: 'CAD': "symbol-narrow"}}</td><!-- currency pipe -->
-      <td>{{ student.isAdmin ? 'Yes' : 'No' }}</td>
-    </tr>
-    </tbody>
+  <!-- Material Table -->
+  <table mat-table [dataSource]="userList" class="mat-elevation-z8">
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let student">{{ student.id }}</td>
+    </ng-container>
+
+    <!-- Full Name Column -->
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef>Full Name</th>
+      <td mat-cell *matCellDef="let student">{{ student | fullName }}</td>
+    </ng-container>
+
+    <!-- Department Column -->
+    <ng-container matColumnDef="department">
+      <th mat-header-cell *matHeaderCellDef>Department</th>
+      <td mat-cell *matCellDef="let student">{{ student.department }}</td>
+    </ng-container>
+
+    <!-- Budget Column -->
+    <ng-container matColumnDef="budget">
+      <th mat-header-cell *matHeaderCellDef>Budget</th>
+      <td mat-cell *matCellDef="let student">{{ student.budget | currency: 'CAD': 'symbol-narrow' }}</td>
+    </ng-container>
+
+    <!-- Admin Column -->
+    <ng-container matColumnDef="isAdmin">
+      <th mat-header-cell *matHeaderCellDef>Admin</th>
+      <td mat-cell *matCellDef="let student">{{ student.isAdmin ? 'Yes' : 'No' }}</td>
+    </ng-container>
+
+    <!-- Row -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let student; columns: displayedColumns"
+      [routerLink]="['/students', student.id]"
+      [appHoverHighlight]="'lightblue'"
+    ></tr>
   </table>
 
+  <!-- Error Message -->
+  <div *ngIf="error" class="error mat-error">{{ error }}</div>
 </div>
-
-<div *ngIf="error" class="error">{{ error }}</div>

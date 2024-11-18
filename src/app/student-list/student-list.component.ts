@@ -6,28 +6,52 @@ import {StudentService} from "../Services/student.service";
 import {RouterLink} from "@angular/router";
 import {FullNamePipe} from "../pipes/full-name.pipe";
 import {HoverHighlightDirective} from "../directives/hover-highlight.directive";
+import {
+  MatCell,
+  MatCellDef, MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef, MatHeaderRow,
+  MatHeaderRowDef, MatRow,
+  MatRowDef,
+  MatTable
+} from "@angular/material/table";
+import { MatTableDataSource } from '@angular/material/table';
+
 
 
 @Component({
   selector: 'app-student-list',
   standalone: true,
   imports: [
-    NgForOf,
-    StudentDetailComponent,
+
+
     RouterLink,
     NgIf,
     CurrencyPipe,
     FullNamePipe,
-    UpperCasePipe,
-    HoverHighlightDirective
+
+    HoverHighlightDirective,
+    MatTable,
+    MatHeaderCellDef,
+    MatCellDef,
+    MatRowDef,
+    MatHeaderRowDef,
+    MatHeaderCell,
+    MatColumnDef,
+    MatCell,
+    MatHeaderRow,
+    MatRow
   ],
   templateUrl: './student-list.component.html',
   styleUrl: './student-list.component.scss'
 })
 export class StudentListComponent implements OnInit {
   //Placeholder values for the table
-  displayedColumns:string[]= ['id', 'firstName', 'lastName', 'department', 'isAdmin'];
+  displayedColumns:string[]= ['id', 'fullName', 'department', 'budget','isAdmin'];
+
   userList: User[] = [];
+
+
   error: string | null = null; //Var to hold an error message
 
   constructor (private studentService: StudentService){
@@ -50,11 +74,8 @@ export class StudentListComponent implements OnInit {
       complete: () => console.log("Student data fetch complete!")
     });
   }
-  selectedStudent?: User;
-  selectStudent(student: User): void {
-    this.selectedStudent = student;
-  }
 
+  dataSource = new MatTableDataSource(this.userList);
 
 
 }

@@ -1,78 +1,26 @@
-/* modify-student.component.scss */
-
-/* Container for the form */
-form {
+.mat-form {
   max-width: 600px;
   margin: 0 auto;
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; // Space between form fields
 }
 
-/* Style for form groups */
-.form-group {
-  margin-bottom: 1rem;
-}
-
-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-input[type="text"],
-input[type="number"],
-input[type="checkbox"] {
+.form-field {
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
 }
 
-input[type="checkbox"] {
-  width: auto;
-  margin-right: 0.5rem;
+.checkbox {
+  margin: 1rem 0;
 }
 
-/* Style for buttons */
-button {
-  padding: 0.5rem 1rem;
-  margin-right: 0.5rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
+.button-group {
+  display: flex;
+  gap: 1rem;
 }
 
-
-
-button[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
-}
-
-button[type="button"] {
-  background-color: #007BFF;
-  color: white;
-}
-
-button[type="button"]:last-of-type {
-  background-color: #DC3545;
-}
-
-/* Optional: Style for invalid form state */
-.invalid-form-message {
+.mat-error {
   color: red;
   font-weight: bold;
+  margin-top: 1rem;
 }
-
-.custom-disabled {
-  background-color: #d3d3d3 !important; /* Gray background to indicate disabled */
-  color: #a9a9a9 !important; /* Light gray text color */
-  cursor: not-allowed !important; /* Change cursor to indicate unclickable */
-  pointer-events: none !important; /* Prevent any mouse events */
-  border: 1px solid #ccc !important; /* Keep border consistent */
-}
-
-

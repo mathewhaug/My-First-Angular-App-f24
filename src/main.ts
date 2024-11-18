@@ -8,6 +8,9 @@ import {provideHttpClient} from "@angular/common/http";
 import {importProvidersFrom} from "@angular/core";
 import {StudentListComponent} from "./app/student-list/student-list.component";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {MatTableModule} from "@angular/material/table";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 
 //main.ts
 //define the routes and specify their child routes
@@ -28,6 +31,10 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(), // Ensure that HTTP interceptors are properly configured
     provideRouter(routes),
-    importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 1 })), provideAnimationsAsync() // Import providers dynamically
+    importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 1 })),
+    provideAnimationsAsync(), // Import providers dynamically
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule,
   ],
 }).catch((err) => console.error(err));

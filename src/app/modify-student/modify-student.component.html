@@ -1,46 +1,38 @@
-<!-- modify-student.component.html
-This is built using Reactive Forms-->
-<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="mat-form">
   <!-- ID Field -->
-  <div class="form-group">
-    <label for="id">ID</label>
-    <input type="number" id="id" formControlName="id" />
-  </div>
+  <mat-form-field appearance="outline" class="form-field" disabled>
+    <mat-label>ID</mat-label>
+    <input matInput type="number" formControlName="id" />
+  </mat-form-field>
 
-  <!--first Name Field -->
-  <div class="form-group">
-    <label for="firstName">First Name</label>
-    <input type="text" id="firstName" formControlName="firstName" appAutoFocus/>
-  </div>
+  <!-- First Name Field -->
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>First Name</mat-label>
+    <input matInput type="text" formControlName="firstName" appAutoFocus />
+  </mat-form-field>
 
-  <!--last name Field -->
-  <div class="form-group">
-    <label for="lastName">Last Name</label>
-    <input type="text" id="lastName" formControlName="lastName" />
-  </div>
+  <!-- Last Name Field -->
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Last Name</mat-label>
+    <input matInput type="text" formControlName="lastName" />
+  </mat-form-field>
 
   <!-- Department Field -->
-  <div class="form-group">
-    <label for="department">Department</label>
-    <input type="text" id="department" formControlName="department" />
-  </div>
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Department</mat-label>
+    <input matInput type="text" formControlName="department" />
+  </mat-form-field>
 
   <!-- Is Admin Checkbox -->
-  <div class="form-group">
-    <label for="isAdmin">Is Admin</label>
-    <input type="checkbox" id="isAdmin" formControlName="isAdmin" />
+  <mat-checkbox formControlName="isAdmin" class="checkbox">Is Admin</mat-checkbox>
+
+  <!-- Buttons -->
+  <div class="button-group">
+    <button mat-raised-button color="primary" type="submit" [appDisableButton]="studentForm">Submit</button>
+    <button mat-raised-button color="warn" type="button" (click)="onDelete()">Delete</button>
+    <button mat-button type="button" (click)="navigateToStudentList()">Back to List</button>
   </div>
 
-  <!-- Submit Button (Add or Update)
-  Passing in studentForm as the var, this relates to the reactive form name
-   at the top of the file-->
-  <button type="submit" [appDisableButton]="studentForm">Submit</button>
-
-  <!-- Delete Button (Always Displayed Now) -->
-  <button type="button" (click)="onDelete()">Delete</button>
-
-  <!-- Back Button -->
-  <button type="button" (click)="navigateToStudentList()">Back to List</button>
+  <!-- Error Message -->
+  <div *ngIf="error" class="error mat-error">{{ error }}</div>
 </form>
-<div *ngIf="error" class="error">{{ error }}</div>
-
