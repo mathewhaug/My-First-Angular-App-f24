@@ -23,31 +23,27 @@ import { MatSort } from '@angular/material/sort';
 
 
 @Component({
-  selector: 'app-student-list',
-  standalone: true,
-  imports: [
-
-
-    RouterLink,
-    NgIf,
-    CurrencyPipe,
-    FullNamePipe,
-
-    HoverHighlightDirective,
-    MatTable,
-    MatHeaderCellDef,
-    MatCellDef,
-    MatRowDef,
-    MatHeaderRowDef,
-    MatHeaderCell,
-    MatColumnDef,
-    MatCell,
-    MatHeaderRow,
-    MatRow,
-    MatPaginator
-  ],
-  templateUrl: './student-list.component.html',
-  styleUrl: './student-list.component.scss'
+    selector: 'app-student-list',
+    imports: [
+        RouterLink,
+        NgIf,
+        CurrencyPipe,
+        FullNamePipe,
+        HoverHighlightDirective,
+        MatTable,
+        MatHeaderCellDef,
+        MatCellDef,
+        MatRowDef,
+        MatHeaderRowDef,
+        MatHeaderCell,
+        MatColumnDef,
+        MatCell,
+        MatHeaderRow,
+        MatRow,
+        MatPaginator
+    ],
+    templateUrl: './student-list.component.html',
+    styleUrl: './student-list.component.scss'
 })
 export class StudentListComponent implements OnInit {
   //Placeholder values for the table

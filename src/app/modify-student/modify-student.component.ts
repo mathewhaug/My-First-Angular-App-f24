@@ -14,24 +14,23 @@ import {MatButtonModule} from "@angular/material/button";
 
 
 @Component({
-  selector: 'app-modify-student',
-  standalone: true,
-  imports: [
-    FormsModule,
-    NgIf,
-    ReactiveFormsModule,
-    DisableButtonDirective,
-    AutoFocusDirective,
-    MatCheckbox,
-    MatLabel,
-    MatFormField,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatButtonModule
-  ],
-  templateUrl: './modify-student.component.html',
-  styleUrl: './modify-student.component.scss'
+    selector: 'app-modify-student',
+    imports: [
+        FormsModule,
+        NgIf,
+        ReactiveFormsModule,
+        DisableButtonDirective,
+        AutoFocusDirective,
+        MatCheckbox,
+        MatLabel,
+        MatFormField,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatButtonModule
+    ],
+    templateUrl: './modify-student.component.html',
+    styleUrl: './modify-student.component.scss'
 })
 export class ModifyStudentComponent implements OnInit{
   studentForm: FormGroup;

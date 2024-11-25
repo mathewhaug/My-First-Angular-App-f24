@@ -7,11 +7,10 @@ import {MatToolbar} from "@angular/material/toolbar";
 import {MatButton} from "@angular/material/button";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, NgForOf, JsonPipe, StudentListComponent, RouterLink, RouterLinkActive, MatToolbar, MatButton],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    imports: [RouterOutlet, RouterLink, RouterLinkActive, MatToolbar, MatButton],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title= 'Student Management System';

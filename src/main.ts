@@ -5,12 +5,13 @@ import { AppComponent } from './app/app.component';
 import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
 import {InMemoryDataService} from "./app/Services/in-memory-data.service";
 import {provideHttpClient} from "@angular/common/http";
-import {importProvidersFrom} from "@angular/core";
+import {importProvidersFrom, isDevMode} from "@angular/core";
 import {StudentListComponent} from "./app/student-list/student-list.component";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatTableModule} from "@angular/material/table";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import { provideServiceWorker } from '@angular/service-worker';
 
 //main.ts
 //define the routes and specify their child routes
@@ -35,6 +36,9 @@ bootstrapApplication(AppComponent, {
     provideAnimationsAsync(), // Import providers dynamically
     MatTableModule,
     MatButtonModule,
-    MatIconModule,
+    MatIconModule, provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          }),
   ],
 }).catch((err) => console.error(err));
