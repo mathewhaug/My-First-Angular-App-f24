@@ -1,6 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../Shared/Models/user";
 import {NgIf} from "@angular/common";
+import {StudentService} from "../Services/student.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-student-detail',
@@ -11,19 +13,47 @@ import {NgIf} from "@angular/common";
   templateUrl: './student-detail.component.html',
   styleUrl: './student-detail.component.scss'
 })
-export class StudentDetailComponent {
-  //Input marks the property as an input property that can receive data from a parent
-  @Input() student?:User;
-  /*
-  @Input is known as a decorator in Angular. It is a special kind of declaration that can be attached to a
-  class declaration, method, accessor, property, or parameter. Decorators use the form @expression,
- where expression must evaluate to a function that will be called at runtime with information about the
- decorated declaration.
+export class StudentDetailComponent implements OnInit {
+  //We need some variables to store and manage are state
+  student :User | undefined //Undefined because if the button isnt pressed, it has no value
+  userList : User[] = [] // To store the list of students
+  currentIndex:number = 0; //Track which user to display
 
- In particular, this let's Angular know that the variable student is an input property that can be passed
-  from the parent component. This is how we can pass data from the parent component to the child component.
+  //Using my service to get the students
+  constructor(private studentService : StudentService,
+              private router : Router,
+              private route: ActivatedRoute
+              ) {}
+  ngOnInit():void {
+    //Need to subscribe to our of
+    this.studentService.getStudents().subscribe(users => {
+      this.userList = users
+      //Now we need to subscribe to the paramMap Changes
+      this.route.paramMap.subscribe(params => {
+        const id = Number(params.get("id"))
+        if (id) {
+          this.currentIndex = this.userList.findIndex(user => user.id === id)
+          this.student = this.userList[this.currentIndex]
+        }
+      })
+    })
+  }
 
-  The ? indicates it is optional, and the User keyword is our interface that we created in the Models folder.
-   */
+  goBack(){
+    this.router.navigate(['/students'])
+  }
+  goForward(){
+    if(this.currentIndex < this.userList.length-1){
+      this.currentIndex++
+      this.router.navigate(['/students',this.userList[this.currentIndex].id])
+    }
+  }
+
+  goBackward(){
+    if(this.currentIndex > 0){
+      this.currentIndex--
+      this.router.navigate(['/students',this.userList[this.currentIndex].id])
+    }
+  }
 
 }
