@@ -40,3 +40,11 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+/src/app/footer/footer.component.html
+/src/app/footer/footer.component.scss
+/src/app/footer/footer.component.spec.ts
+/src/app/footer/footer.component.ts
+/src/app/header/header.component.html
+/src/app/header/header.component.scss
+/src/app/header/header.component.spec.ts
+/src/app/header/header.component.ts
