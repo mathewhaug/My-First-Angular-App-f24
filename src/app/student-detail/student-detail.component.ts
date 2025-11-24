@@ -20,32 +20,31 @@ import {MatIconModule} from "@angular/material/icon";
 
 
 @Component({
-  selector: 'app-student-detail',
-  standalone: true,
-  imports: [
-    NgIf,
-    CurrencyPipe,
-    HoverHighlightDirective,
-    TextColorDirective,
-    MatCard,
-    MatCardHeader,
-    MatCardContent,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCell,
-    MatHeaderCellDef,
-    MatCellDef,
-    MatCell,
-    MatHeaderRow,
-    MatHeaderRowDef,
-    MatRowDef,
-    MatRow,
-    MatButton,
-    MatCardModule, //These last two imports did not get imported automatically, I had to type them manually
-    MatIconModule
-  ],
-  templateUrl: './student-detail.component.html',
-  styleUrl: './student-detail.component.scss'
+    selector: 'app-student-detail',
+    imports: [
+        NgIf,
+        CurrencyPipe,
+        HoverHighlightDirective,
+        TextColorDirective,
+        MatCard,
+        MatCardHeader,
+        MatCardContent,
+        MatTable,
+        MatColumnDef,
+        MatHeaderCell,
+        MatHeaderCellDef,
+        MatCellDef,
+        MatCell,
+        MatHeaderRow,
+        MatHeaderRowDef,
+        MatRowDef,
+        MatRow,
+        MatButton,
+        MatCardModule, //These last two imports did not get imported automatically, I had to type them manually
+        MatIconModule
+    ],
+    templateUrl: './student-detail.component.html',
+    styleUrl: './student-detail.component.scss'
 })
 export class StudentDetailComponent implements OnInit{
   //Needs to be | undef because there wont always be a student thats clicked on
