@@ -1,0 +1,15 @@
+<div class="container">
+  <table>
+    <tbody>
+    <h1>MACS ARE ANNOYING</h1>
+  <tr *ngFor="let user of userList" [routerLink]=['/students',user.id]>
+    <td>{{ user.firstName }}</td>
+    <td>{{ user.lastName }}</td>
+    <td>{{ user.id }}</td>
+    <td>{{ user.department }}</td>
+    <td>{{ user.isAdmin ? 'Yes' : 'No' }}</td> <!-- ternary operator to give user appropriate feedback -->
+    <!-- button to toggle admin status -->
+  </tr>
+    </tbody>
+  </table>
+</div>
