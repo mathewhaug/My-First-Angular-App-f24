@@ -19,6 +19,7 @@ export class StudentService {
   //Create: Add USer
   addStudent(newStudent:User) : Observable<User[]>{
     this.students.push(newStudent)
+    console.log(this.students)
     return of(this.students);
   }
 
@@ -43,6 +44,9 @@ export class StudentService {
   getStudentById(studentId: number): Observable<User | undefined> {
     const student = this.students.find(user => user.id === studentId);
     return of(student);
+  }
+  generateNewId() : number{
+    return this.students.length > 0 ? Math.max(...this.students.map(student => student.id)) +1 : 1;
   }
 }
 

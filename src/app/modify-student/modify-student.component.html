@@ -1,32 +1,31 @@
 <!-- modify-student.component.html -->
 
-<form #studentForm="ngForm" (ngSubmit)="updateStudent()" [class.invalid-form]="studentForm.invalid">
+<form [formGroup]="studentForm"  (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="id">ID</label>
-    <input type="number" id="id" name="id" [(ngModel)]="student.id" required />
+    <input type="number" id="id" name="id" formControlName="id"  />
   </div>
   <div class="form-group">
     <label for="firstName">First Name</label>
-    <input type="text" id="firstName" name="firstName" [(ngModel)]="student.firstName" required />
+    <input type="text" id="firstName" name="firstName" formControlName="firstName" required />
   </div>
   <div class="form-group">
     <label for="lastName">Last Name</label>
-    <input type="text" id="lastName" name="lastName" [(ngModel)]="student.lastName" required />
+    <input type="text" id="lastName" name="lastName" formControlName="lastName"required />
   </div>
   <div class="form-group">
     <label for="department">Department</label>
-    <input type="text" id="department" name="department" [(ngModel)]="student.department" required />
+    <input type="text" id="department" name="department" formControlName="department" required />
   </div>
   <div class="form-group">
     <label for="isAdmin">Admin</label>
-    <input type="checkbox" id="isAdmin" name="isAdmin" [(ngModel)]="student.isAdmin" />
+    <input type="checkbox" id="isAdmin" name="isAdmin" formControlName="isAdmin"/>
   </div>
-  <button type="submit">Update Student</button>
-  <button type="button" (click)="addStudent()">Add Student</button>
-  <button type="button" (click)="deleteStudent()">Delete Student</button>
+  <!-- ADD or UPDATE -->
+  <button type="submit">Submit</button>
+  <!-- Delete Button -->
+  <button type="button" (click)="onDelete()">Delete</button>
+  <!-- Back button -->
+  <button type="button" (click) = "navBackToStudentList()">Back to student List</button>
 
-  <!-- Optional: Display messages or form status -->
-  <div *ngIf="studentForm.invalid" class="invalid-form-message">
-    <p>Please fill out all required fields.</p>
-  </div>
 </form>
